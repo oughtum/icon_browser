@@ -276,7 +276,7 @@ public partial class IconBrowser : Control
                 string dirname = solidToggleBtn.ButtonPressed
                     ? SOLID_ICONS_DIRNAME
                     : REGULAR_ICONS_DIRNAME;
-                string svgOutputPath = $"{outputDir}/{svgFile}";
+                string svgOutputPath = $"{outputDir}/{picker.IconNameInput.Text}.svg";
 
                 Directory.CreateDirectory(outputDir);
                 File.Copy($"{ICONS_DIR}/{dirname}/{svgFile}", svgOutputPath, true);

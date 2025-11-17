@@ -2,15 +2,16 @@
 
 [ext_resource type="Script" uid="uid://d1dhvife85oh1" path="res://addons/icon_browser/IconColourPicker.cs" id="1_x4q02"]
 
-[node name="IconColourPicker" type="HBoxContainer" node_paths=PackedStringArray("IconButton", "IconSizeInput", "colourPickerBtn", "removeBtn")]
+[node name="IconColourPicker" type="HBoxContainer" node_paths=PackedStringArray("IconButton", "IconNameInput", "IconSizeInput", "colourPickerBtn", "removeBtn")]
 offset_right = 104.0
 offset_bottom = 48.0
-size_flags_horizontal = 4
+size_flags_horizontal = 6
 script = ExtResource("1_x4q02")
 IconButton = NodePath("Button")
-IconSizeInput = NodePath("VBoxContainer/HBoxContainer/Size")
+IconNameInput = NodePath("VBoxContainer/HBoxContainer/Name")
+IconSizeInput = NodePath("VBoxContainer/HBoxContainer2/Size")
 colourPickerBtn = NodePath("ColorPickerButton")
-removeBtn = NodePath("VBoxContainer/RemoveButton")
+removeBtn = NodePath("RemoveButton")
 
 [node name="Button" type="Button" parent="."]
 custom_minimum_size = Vector2(56, 56)
@@ -20,29 +21,42 @@ icon_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
+text = "Name:"
+
+[node name="Name" type="LineEdit" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
 size_flags_horizontal = 0
 text = "Size:"
 horizontal_alignment = 1
 
-[node name="Size" type="SpinBox" parent="VBoxContainer/HBoxContainer"]
+[node name="Size" type="SpinBox" parent="VBoxContainer/HBoxContainer2"]
 layout_mode = 2
+size_flags_horizontal = 3
 max_value = 512.0
 value = 16.0
 rounded = true
 alignment = 2
-
-[node name="RemoveButton" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-text = "Remove"
 
 [node name="ColorPickerButton" type="ColorPickerButton" parent="."]
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+
+[node name="RemoveButton" type="Button" parent="."]
+layout_mode = 2
+text = "Remove"

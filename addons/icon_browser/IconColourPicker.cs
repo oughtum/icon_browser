@@ -8,6 +8,9 @@ public partial class IconColourPicker : HBoxContainer
     public Button IconButton;
 
     [Export]
+    public LineEdit IconNameInput;
+
+    [Export]
     public SpinBox IconSizeInput;
 
     [Export]
