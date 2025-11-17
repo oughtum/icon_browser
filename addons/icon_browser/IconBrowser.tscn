@@ -1,0 +1,190 @@
+[gd_scene load_steps=10 format=3 uid="uid://b3hu1wbuyu4f8"]
+
+[ext_resource type="Script" uid="uid://cart7uwsbm4yc" path="res://addons/icon_browser/IconBrowser.cs" id="1_k40jk"]
+[ext_resource type="PackedScene" uid="uid://cvk7kd3xe2wwl" path="res://addons/icon_browser/IconButton.tscn" id="2_wfrua"]
+[ext_resource type="PackedScene" uid="uid://3cara575u6gx" path="res://addons/icon_browser/IconColourPicker.tscn" id="3_hjgfx"]
+[ext_resource type="Script" uid="uid://bmx4x3l4jfyex" path="res://addons/icon_browser/BuiltinColourButton.cs" id="4_e6ytr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xs3g0"]
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0m4w3"]
+bg_color = Color(0.5529412, 0.64705884, 0.9529412, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e6ytr"]
+bg_color = Color(0.9882353, 0.49803922, 0.49803922, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dqiuo"]
+bg_color = Color(0.5568628, 0.9372549, 0.5921569, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oxjyx"]
+bg_color = Color(0.8235294, 0.6745098, 0.41568628, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="Icon Browser" type="Control" node_paths=PackedStringArray("searchBar", "solidToggleBtn", "fetchIconsBtn", "prevPage", "nextPage", "iconsGrid", "selectedIcons", "outputDirInput", "saveIconsBtn")]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 16.0
+offset_right = 16.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_k40jk")
+searchBar = NodePath("Sections/SelectSection/Search/SearchBar")
+solidToggleBtn = NodePath("Sections/SelectSection/Search/SolidToggle")
+fetchIconsBtn = NodePath("Sections/SelectSection/Search/RefetchIcons")
+prevPage = NodePath("Sections/SelectSection/HBoxContainer/PrevPage")
+nextPage = NodePath("Sections/SelectSection/HBoxContainer/NextPage")
+iconsGrid = NodePath("Sections/SelectSection/ScrollContainer/IconsGrid")
+iconBtnScene = ExtResource("2_wfrua")
+selectedIcons = NodePath("Sections/EditSection/ScrollContainer/SelectedIcons")
+iconColourPickerScene = ExtResource("3_hjgfx")
+outputDirInput = NodePath("Sections/EditSection/HBoxContainer/OutputDirectory")
+saveIconsBtn = NodePath("Sections/EditSection/HBoxContainer/SaveIcons")
+
+[node name="Sections" type="VSplitContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SelectSection" type="VBoxContainer" parent="Sections"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Search" type="HBoxContainer" parent="Sections/SelectSection"]
+layout_mode = 2
+
+[node name="SearchBar" type="LineEdit" parent="Sections/SelectSection/Search"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Search..."
+emoji_menu_enabled = false
+
+[node name="SolidToggle" type="CheckButton" parent="Sections/SelectSection/Search"]
+layout_mode = 2
+text = "Solid"
+
+[node name="RefetchIcons" type="Button" parent="Sections/SelectSection/Search"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Refetch Icons"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Sections/SelectSection"]
+layout_mode = 2
+
+[node name="PrevPage" type="Button" parent="Sections/SelectSection/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+disabled = true
+text = "Prev Page"
+
+[node name="NextPage" type="Button" parent="Sections/SelectSection/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Next Page"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Sections/SelectSection"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+size_flags_vertical = 3
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="IconsGrid" type="FlowContainer" parent="Sections/SelectSection/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="EditSection" type="VBoxContainer" parent="Sections"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HSeparator" type="HSeparator" parent="Sections/EditSection"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Sections/EditSection"]
+layout_mode = 2
+
+[node name="OutputDirectory" type="LineEdit" parent="Sections/EditSection/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Output directory..."
+
+[node name="SaveIcons" type="Button" parent="Sections/EditSection/HBoxContainer"]
+layout_mode = 2
+text = "Save Selected Icons"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Sections/EditSection"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="Sections/EditSection/HBoxContainer2"]
+layout_mode = 2
+text = "Builtin Colors"
+
+[node name="BuiltinColours" type="HBoxContainer" parent="Sections/EditSection/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+
+[node name="Node" type="Button" parent="Sections/EditSection/HBoxContainer2/BuiltinColours"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_xs3g0")
+script = ExtResource("4_e6ytr")
+
+[node name="2D" type="Button" parent="Sections/EditSection/HBoxContainer2/BuiltinColours"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_0m4w3")
+script = ExtResource("4_e6ytr")
+
+[node name="3D" type="Button" parent="Sections/EditSection/HBoxContainer2/BuiltinColours"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_e6ytr")
+script = ExtResource("4_e6ytr")
+
+[node name="Control" type="Button" parent="Sections/EditSection/HBoxContainer2/BuiltinColours"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_dqiuo")
+script = ExtResource("4_e6ytr")
+
+[node name="Resource" type="Button" parent="Sections/EditSection/HBoxContainer2/BuiltinColours"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_oxjyx")
+script = ExtResource("4_e6ytr")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Sections/EditSection"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="SelectedIcons" type="FlowContainer" parent="Sections/EditSection/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1

@@ -1,0 +1,5 @@
+*.import
+addons/godot-plugin-refresher
+addons/icon_browser/icons/
+
+LICENSE
